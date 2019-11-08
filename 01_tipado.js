@@ -38,3 +38,20 @@ function suma(a, b) {
     return 'El resultado es ' + sumatorio;
 }
 // let resultado2 = suma('pepe',2); // Error
+// Parámetros opcionales de TypeScript
+function multiplicacion(a, b, mensaje) {
+    var resultado = a * b;
+    // ternario  (condicion) ? codigosicumple : codigosinocumple
+    return mensaje ? mensaje + resultado : 'El resultado es ' + resultado;
+}
+var puntuacion = multiplicacion(3, 5);
+console.log(puntuacion);
+var puntuacion2 = multiplicacion(3, 5, 'The result is ');
+console.log(puntuacion2);
+// Tipos genéricos para funciones (el tipo se define cuando se
+// ejecuta la función)
+function devValor(a) {
+    return a;
+}
+var valor1 = devValor('rojo');
+// let valor2 = devValor<number>('12'); lanzaría error
