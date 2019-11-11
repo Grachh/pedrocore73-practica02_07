@@ -101,8 +101,49 @@ var Direccion = /** @class */ (function () {
     }
     return Direccion;
 }());
-var cliente1 = new Alumno('Juan', '07454154V');
+var alumno1 = new Alumno('Juan', '07454154V');
 var direccion1 = new Direccion('Serrano Galvache, 56', 'Madrid');
-cliente1.setDireccionAlumno(direccion1);
-cliente1.setDireccionAlumno({ calle: 'Ppe Vergara, 100', localidad: 'Madrid' });
-console.log(cliente1);
+alumno1.setDireccionAlumno(direccion1);
+alumno1.setDireccionAlumno({ calle: 'Ppe Vergara, 100', localidad: 'Madrid' });
+console.log(alumno1);
+var Cliente = /** @class */ (function () {
+    function Cliente(razonSocial, cif, email, pago) {
+        this.razonSocial = razonSocial;
+        this.cif = cif;
+        this.email = email;
+        this.pago = pago;
+    }
+    return Cliente;
+}());
+var Acreedor = /** @class */ (function () {
+    function Acreedor(razonSocial, cif, email, retIRPF) {
+        this.razonSocial = razonSocial;
+        this.cif = cif;
+        this.email = email;
+        this.retIRPF = retIRPF ? retIRPF : retIRPF = 0;
+    }
+    return Acreedor;
+}());
+/* Métodos estáticos */
+// Los miembros estáticos (métodos) son propiedades o métodos 
+// que dependen directamente de la clase en vez del objeto que se instancia
+var Usuario = /** @class */ (function () {
+    // ...
+    function Usuario(nombre, apellidos) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+    }
+    Usuario.fechaActual = function () {
+        var fecha = new Date();
+        var dia = fecha.getDate();
+        var mes = fecha.getMonth() + 1; // getMonth() devuelve un entero del mes comenzando en 0
+        var anyo = fecha.getUTCFullYear();
+        return dia + '/' + mes + '/' + anyo;
+    };
+    return Usuario;
+}());
+var hoy = Usuario.fechaActual();
+console.log(hoy);
+var usuario1 = new Usuario('Juan', 'Pérez');
+usuario1.alta = Usuario.fechaActual();
+console.table(usuario1);

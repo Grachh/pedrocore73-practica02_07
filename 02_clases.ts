@@ -129,9 +129,79 @@ class Direccion {
     }
 }
 
-let cliente1 = new Alumno('Juan','07454154V');
+let alumno1 = new Alumno('Juan','07454154V');
 let direccion1 = new Direccion('Serrano Galvache, 56', 'Madrid');
 
-cliente1.setDireccionAlumno(direccion1);
-cliente1.setDireccionAlumno({calle:'Ppe Vergara, 100',localidad:'Madrid'});
-console.log(cliente1);
+alumno1.setDireccionAlumno(direccion1);
+alumno1.setDireccionAlumno({calle:'Ppe Vergara, 100',localidad:'Madrid'});
+console.log(alumno1);
+
+/* Interfaces */
+
+interface DatosMaestros {
+    razonSocial: string;
+    cif: string;
+    email: string;
+}
+
+class Cliente implements DatosMaestros {
+    public razonSocial: string;
+    public cif: string;
+    public email: string;
+    public pago: string;
+
+    constructor(razonSocial: string, cif: string, email: string, pago: string) {
+        this.razonSocial = razonSocial;
+        this.cif = cif;
+        this.email = email;
+        this.pago = pago;
+    }
+
+}
+
+class Acreedor implements DatosMaestros {
+    public razonSocial: string;
+    public cif: string;
+    public email: string;
+    public retIRPF: number;
+
+    constructor(razonSocial: string, cif: string, email: string, retIRPF?: number) {
+        this.razonSocial = razonSocial;
+        this.cif = cif;
+        this.email = email;
+        this.retIRPF = retIRPF ? retIRPF : retIRPF = 0;
+    }
+
+}
+
+/* Métodos estáticos */
+
+// Los miembros estáticos (métodos) son propiedades o métodos 
+// que dependen directamente de la clase en vez del objeto que se instancia
+
+class Usuario {
+    public nombre: string;
+    public apellidos: string;
+    public alta: string;
+    // ...
+
+    constructor(nombre: string, apellidos: string) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+    }
+
+    static fechaActual() {
+        let fecha = new Date();
+        let dia = fecha.getDate(); 
+        let mes = fecha.getMonth() + 1; // getMonth() devuelve un entero del mes comenzando en 0
+        let anyo = fecha.getUTCFullYear();
+        return dia + '/' + mes + '/' + anyo;
+    }
+}
+
+let hoy = Usuario.fechaActual();
+console.log(hoy);
+
+let usuario1 = new Usuario('Juan','Pérez');
+usuario1.alta = Usuario.fechaActual();
+console.table(usuario1);
